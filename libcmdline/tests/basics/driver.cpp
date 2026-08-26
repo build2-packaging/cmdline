@@ -1,7 +1,6 @@
-#include <sstream>
-#include <stdexcept>
-
 #include <cmdline/cmdline.h>
+
+#include <string>
 
 #undef NDEBUG
 #include <cassert>
@@ -9,26 +8,21 @@
 int main ()
 {
   using namespace std;
-  using namespace cmdline;
 
-  // Basics.
-  //
-  {
-    ostringstream o;
-    say_hello (o, "World");
-    assert (o.str () == "Hello, World!\n");
-  }
+  cmdline::parser p;
+  p.add<string> ("host", 'h', "host name", true, "");
+  p.add<int> ("port", 'p', "port number", false, 80);
+  p.add ("gzip", '\0', "gzip when transfer");
 
-  // Empty name.
-  //
-  try
-  {
-    ostringstream o;
-    say_hello (o, "");
-    assert (false);
-  }
-  catch (const invalid_argument& e)
-  {
-    assert (e.what () == string ("empty name"));
-  }
+  const char* argv[] = {
+    "prog",
+    "--host=example.com",
+    "-p", "443",
+    "--gzip"
+  };
+
+  assert (p.parse (5, argv));
+  assert (p.get<string> ("host") == "example.com");
+  assert (p.get<int> ("port") == 443);
+  assert (p.exist ("gzip"));
 }
