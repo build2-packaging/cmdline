@@ -7,6 +7,7 @@ project: cmdline
 summary: C++ command line parser library
 license: BSD-3-Clause
 description-file: README.rst
+description-type: text/plain
 package-description-file: PACKAGE-README.md
 url: https://github.com/tanakh/cmdline
 src-url: https://github.com/tanakh/cmdline
