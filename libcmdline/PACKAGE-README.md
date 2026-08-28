@@ -4,6 +4,14 @@ This is a `build2` package for the [`cmdline`](https://github.com/tanakh/cmdline
 C++ library. It provides a header-only command line parser with typed options,
 generated usage text, and optional value constraints.
 
+This package's `cmdline.h` is a backwards-compatible superset of upstream:
+alongside MSVC portability fixes, it adds a few bug fixes (swallowed error
+messages, an empty-vector edge case, a Windows macro clash) and some new
+opt-in parsing capabilities (stop-at-rest passthrough, a header/footer, and
+parsing argv-like lists without a program name). Everything is additive, so
+code written against vanilla tanakh/cmdline keeps compiling and behaving the
+same.
+
 
 ## Usage
 
