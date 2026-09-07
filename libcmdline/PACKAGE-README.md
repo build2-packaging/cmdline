@@ -9,8 +9,13 @@ alongside MSVC portability fixes, it adds a few bug fixes (swallowed error
 messages, an empty-vector edge case, a Windows macro clash) and some new
 opt-in parsing capabilities (stop-at-rest passthrough, a header/footer, and
 parsing argv-like lists without a program name). Everything is additive, so
-code written against vanilla tanakh/cmdline keeps compiling and behaving the
+code written against vanilla `tanakh/cmdline` keeps compiling and behaving the
 same.
+
+The bug fixes and new parsing capabilities are ported from [RenderDoc's](https://github.com/baldurk/renderdoc)
+vendored `cmdline.h`, required by this package's `renderdoccmd` dependent. The
+remaining portability and bug fixes were found while testing this package under
+build2's own CI.
 
 
 ## Usage
